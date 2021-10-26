@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Morpion Psychédélique</title>
+            <style>
+
+                #grid{
+                    
+                    width: 500px;
+                    height: 500px;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-rows: repeat(3, 1fr);
+
+                    margin: auto;
+                    animation : bigger 0.5s;
+                }
+                @keyframes bigger {
+                    from {
+                        transform: scale(0);
+                    }
+                    10% {
+                        transform: scale(0.1);
+                        
+                    }
+                    20% {
+                        transform: scale(0.2);
+                    }
+                    30% {
+                        transform: scale(0.3);
+                    }
+                    40% {
+                        transform: scale(0.4);
+                    }
+                    50% {
+                        transform: scale(0.5);
+                    }
+                    60% {
+                        transform: scale(0.6);
+                    }
+                    70% {
+                        transform: scale(0.7);
+                    }
+                    80% {
+                        transform: scale(0.8);
+                    }
+                    90% {
+                        transform: scale(0.9);
+                    }
+                    to {
+                        transform: scale(1);
+                    }
+                    
+                }
+                *{
+                    box-sizing: border-box;
+                }
+                .cell {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 4em;
+                    border: 1px solid white;
+                }
+                .cell:hover{
+                    transform: scale(1.05);
+                }
+                #cell1:hover {
+                    border: 3px solid #feac5e;
+                }
+                #cell2:hover {
+                    border: 3px solid #c779d0;
+                }
+                #cell3:hover {
+                    border: 3px solid #4bc0c8;
+                }
+                #cell4:hover {
+                    border: 3px solid #42db75;
+                }
+                #cell5:hover {
+                    border: 3px solid white;
+                }
+                p {
+                    text-align: center;
+                    font-size: 1em;
+                }
+                main {
+                    display: flex;
+                    flex-wrap: wrap;
+                    
+
+                }
+                body{
+                    color: white;
+                    background-color: black;
+                }
+                .player{
+                    
+                    flex: 1;
+                    min-width: 200px;
+                    padding : 1em;
+                    margin-left: 2em;
+                    margin-right: 2em;
+                    border-radius: 20px;
+                    height: 300px;
+                }
+                .first{
+                    position: absolute;
+                    top: 18%;
+                    left: 10%;
+                    font-size: 25px;
+                    letter-spacing: 3px;
+                }
+                .second{
+                    position: absolute;
+                    top: 18%;
+                    right: 12%;
+                    font-size: 25px;
+                    letter-spacing: 3px;
+                }
+                .symbol, .score{
+                    position: absolute;
+                    top: 25%;
+                    margin-left: 115px;
+
+                }
+                main>.player {
+                    flex: 1;
+                }
+                h1, h2, #message, .cell {
+                    text-align: center;
+                    animation: multicolor 3s infinite;
+                }
+                .score{
+                    font-size: 3em;
+                    text-align: center;
+                    animation: tordu 4s infinite;
+                    color: bisque;
+                }
+                @keyframes tordu{
+                    from {
+                        transform: skew(15deg, 15deg);
+                    }
+                    50%{
+                        transform: skew(-15deg, -15deg);
+                    }
+                    to {
+                        transform: skew(15deg, 15deg);
+                    }
+                }
+                #message {
+                    font-size: 2.5em;
+                    animation : multicolor 3s infinite;
+                }
+                @keyframes multicolor {
+                    from {
+                        color: white;
+                    }
+                    20% {
+                        color: #feac5e;
+                    }
+                    40% {
+                        color : #c779d0;
+                    }
+                    60% {
+                        color : #4bc0c8;
+                    }
+                    80%{
+                        color: #42db75;
+                    }
+                    100%{
+                        color: white
+                    }
+                }
+                img{
+                    width: 150px;
+                    height: 150px;
+                }
+                #message img{
+                    width: 80px;
+                    height: 40px;
+                }
+                button {
+                    font-size: 1.5em;
+                    float : left;
+                    background: linear-gradient(to right, #feac5e , #c779d0, #4bc0c8, #42db75);
+                    animation : rapidos 3s;
+                }
+                @keyframes rapidos{
+                    from{
+                        transform: translateX(1000px) translateY(-500px);
+                        font-size: 1.5em;
+                    }
+                    10%{
+                        transform: translateX(600px) translateY(-100px);
+                        font-size: 0.1em;
+                    }
+                    20%{
+                        transform: translateX(800px) translateY(-300px);
+                        font-size: 1.5em;
+                    }
+                    30%{
+                        transform: translateX(180px) translateY(-540px);
+                        font-size: 0.1em;
+                    }
+                    40%{
+                        transform: translateX(100px) translateY(-500px);
+                        font-size: 1.5em;
+                    }
+                    50%{
+                        transform: translateX(123px) translateY(-280px);
+                        font-size: 0.1em;
+                    }
+                    60%{
+                        transform: translateX(1000px) translateY(-200px);
+                        font-size: 1.5em;
+                    }
+                    70%{
+                        transform: translateX(360px) translateY(-50px);
+                        font-size: 0.1em;
+                    }
+                    80%{
+                        transform: translateX(300px) translateY(-400px);
+                        font-size: 1.5em;
+                    }
+                    90%{
+                        transform: translateX(400px) translateY(-500px);
+                        font-size: 0.1em;
+                    }
+                    to{
+                        transform: translateX(0) translateY(0);
+                        font-size: 1em;
+                    }
+                }
+                .reset {
+                    float: right
+                }
+                .reset:hover{
+                    transform: scale(1.05);
+                    
+                }
+                a{
+                    animation: multicolor 3s infinite;
+                    font-weight: bold;
+                    font-size: 2em;
+                }
+                .circle{
+                    width: 250px;
+                    height: 250px;
+                    border-radius: 50%;
+                    border: 3px solid #f1f1f1;
+                    animation: 1s linear infinite alternate boxMagic, 4s linear infinite spinning;
+                    padding-top: 260px;
+                }
+                @keyframes boxMagic{
+                    from{
+                        box-shadow: 
+                        0 0 0 #feac5e,
+                        0 0 0 #c779d0,
+                        0 0 0 #4bc0c8,
+                        0 0 0 #42db75;
+                    }
+                    to {
+                        box-shadow: 
+                        0 -10px 0 #feac5e,
+                        -10px 0 0 #c779d0,
+                        0 10px 0 #4bc0c8,
+                        10px 0 0 #42db75;
+                    }
+                }
+                @keyframes spinning {
+                    from{
+                        transform: rotate(0deg);
+                    }
+                    to{
+                       transform: rotate(360deg); 
+                    }
+                }
+                a {
+                    text-decoration: none;
+                    color: white;
+                }
+            </style>
+            </head>
+            <body>
+                <div id="message">PENDING...</div>
+                <main>
+                <div id="player1" class="player">
+                    <div class="circle"></div>
+                    <h1 class=first>Joueur 1</h1>
+                    <h2 class="symbol"></h2>
+                    <p class="score"></p>
+                </div>
+                <div id="grid">
+                    <div id="cell1" class="cell"></div>
+                    <div id="cell2" class="cell"></div>
+                    <div id="cell3" class="cell"></div>
+                    <div id="cell4" class="cell"></div>
+                    <div id="cell5" class="cell"></div>
+                    <div id="cell4" class="cell"></div>
+                    <div id="cell3" class="cell"></div>
+                    <div id="cell2" class="cell"></div>
+                    <div id="cell1" class="cell"></div>
+                </div>
+                <div id="player2" class="player">
+                    <div class="circle"></div>
+                    <h1 class="second">Joueur 2</h1>
+                    <h2 class="symbol"></h2>
+                    <p class="score"></p>
+                </div>
+            </main>
+                
+                <p id="reset">
+                    <button id="newSet">Nouvelle manche</button>
+                    <a class="reset" href="morpion_psy.html">NOUVELLE PARTIE</a>
+                </p>
+                <br><br><br>
+                
+                
+                <script>
+                         class Player{
+            
+            static playerTurn
+
+            constructor(symbol, tag){
+                this.symbol = symbol
+                this.score = 0
+                this.tag = tag
+                this.display()  
+            }
+            
+            display(){
+                this.tag.querySelector(".symbol").innerText = this.symbol
+                this.tag.querySelector(".score").innerText = this.score 
+            }
+            increaseScore(){
+                this.score++
+                this.display()
+            }
+        }
+        function displayMessage(msg){
+            let message = document.querySelector("#message")
+            message.innerHTML = '<strong>'+msg+'</strong>'
+        }
+       
+
+        //TODO : prompt dans les parenthèses
+        const player1 = new Player("X", document.querySelector("#player1"))
+        const player2 = new Player("O", document.querySelector("#player2"))
+
+        Player.playerTurn = player1
+        //la propriété statique playerTurn est un pointeur vers l'objet Player à qui c'est le tour
+        //liste de conditions gagnantes
+        const conditions = [
+            [0, 1, 2], 
+            [3, 4, 5], 
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ]
+        let victory = false
+        let counter = 0
+    
+        const cells = document.querySelectorAll(".cell")
+        const newSetButton = document.querySelector("#newSet")
+        newSetButton.style.display = "none"
+
+        const message = document.querySelector("#message")
+        displayMessage("C'est au tour du joueur "+Player.playerTurn.symbol)
+
+        cells.forEach( cell => {
+            cell.addEventListener("click", () => {
+                if(cell.innerText === "" && victory === false){
+                    
+                    cell.innerText = Player.playerTurn.symbol
+                    counter++
+                    
+                    //vérifier victoire
+                    for(let cond of conditions){
+                        if(cells[cond[0]].innerText === Player.playerTurn.symbol &&
+                           cells[cond[1]].innerText === Player.playerTurn.symbol &&
+                           cells[cond[2]].innerText === Player.playerTurn.symbol){
+                                victory = true
+                                displayMessage("Victoire du joueur "+Player.playerTurn.symbol)
+                                Player.playerTurn.increaseScore()
+                                newSetButton.style.display = "initial"
+                                break
+                        }
+                    } 
+                    //alternance des players
+                    Player.playerTurn = (Player.playerTurn === player1) ? player2 : player1
+                    //égalité
+                    if(counter === 9 && victory === false){
+                        newSetButton.style.display = "initial"
+                        displayMessage("MATCH NUL")
+                    }
+                    else if(victory === false){
+                        displayMessage("C'est au tour du joueur "+Player.playerTurn.symbol)
+                    }
+                }
+                
+            })
+        })
+
+        newSetButton.addEventListener("click", () => {
+            cells.forEach( cell => cell.innerText = "" )
+            newSetButton.style.display = "none"
+            counter = 0
+            victory = false
+            displayMessage("C'est au tour du joueur "+Player.playerTurn.symbol)
+        })
+    </script>
+</body>
+</html>
